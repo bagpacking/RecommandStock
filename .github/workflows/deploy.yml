@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Deploy to NAS
+    - name: Sync code to NAS
       uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.NAS_HOST }}
@@ -19,6 +19,5 @@ jobs:
         script: |
           cd ~/docker/RecommandStock
           git pull origin main
-          newgrp docker << END
-          /usr/local/bin/docker-compose up -d --build
-          END
+          echo "✅ 코드 업데이트 완료"
+          echo "📝 Container Manager → recommandstock 프로젝트 → 작업 → 빌드"
